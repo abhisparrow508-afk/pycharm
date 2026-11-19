@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>🎓 EduManage</h2>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <a href="#" class="active" onclick="showPage('dashboard',this)">🏠 Dashboard</a>
+    <a href="#" onclick="showPage('students',this)">👨‍🎓 Students</a>
+    <a href="#" onclick="showPage('attendance',this)">📅 Attendance</a>
+    <a href="#" onclick="showPage('marks',this)">📊 Marks</a>
+    <a href="#" onclick="showPage('courses',this)">📚 Courses</a>
+    <a href="#" onclick="showPage('fees',this)">💰 Fees</a>
+    <a href="#" onclick="showPage('timetable',this)">🕒 Timetable</a>
+    <a href="#" onclick="showPage('events',this)">🎉 Events</a>
+
+    <div class="sidebar-bottom">
+        <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+    </div>
+</div>
+
+<main class="main">
+
+    <header>
+        <div>
+            <h1>Welcome to EduManage 👋</h1>
+            <p>Your complete student management dashboard</p>
+        </div>
+        <div class="profile">👤 Admin</div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page">
+
+        <h2>Dashboard Overview</h2>
+
+        <div class="stats">
+
+            <div class="stat purple">
+                <h3>Total Students</h3>
+                <h1 id="totalStudents">0</h1>
+                <p>Registered students</p>
+            </div>
+
+            <div class="stat blue">
+                <h3>Courses</h3>
+                <h1>8</h1>
+                <p>Available courses</p>
+            </div>
+
+            <div class="stat orange">
+                <h3>Teachers</h3>
+                <h1>25</h1>
+                <p>Faculty members</p>
+            </div>
+
+            <div class="stat green">
+                <h3>Attendance</h3>
+                <h1>92%</h1>
+                <p>Average attendance</p>
+            </div>
+
+        </div>
+
+        <div class="panel">
+            <h2>Quick Actions</h2>
+            <div class="quick">
+                <button onclick="showPage('students')">➕ Add Student</button>
+                <button onclick="showPage('attendance')">📅 Attendance</button>
+                <button onclick="showPage('marks')">📊 View Marks</button>
+                <button onclick="showPage('courses')">📚 Courses</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>Recent Students</h2>
+            <div id="recentStudents">No students added yet.</div>
+        </div>
+
+    </section>
+
+    <!-- STUDENTS -->
+    <section id="students" class="page hidden">
+
+        <h2>Student Management</h2>
+
+        <div class="panel">
+
+            <h3>Add New Student</h3>
+
+            <input id="studentName" placeholder="Student Name">
+            <input id="studentRoll" placeholder="Roll Number">
+            <input id="studentEmail" placeholder="Email Address">
+
+            <select id="studentCourse">
+                <option value="">Select Course</option>
+                <option>BCA</option>
+                <option>BSc Computer Science</option>
+                <option>BCom</option>
+                <option>BBA</option>
+                <option>BTech</option>
+            </select>
+
+            <button onclick="addStudent()">Add Student</button>
+
+        </div>
+
+        <div class="panel">
+
+            <h3>Student List</h3>
+
+            <input id="searchStudent"
+                   placeholder="🔍 Search students..."
+                   oninput="renderStudents()">
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Email</th>
+                            <th>Course</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable"></tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ATTENDANCE -->
+    <section id="attendance" class="page hidden">
+        <h2>Attendance Management</h2>
+        <div class="panel">
+            <h3>Mark Attendance</h3>
+            <input type="date" id="attendanceDate">
+            <div id="attendanceList"></div>
+            <button onclick="saveAttendance()">Save Attendance</button>
+        </div>
+    </section>
+
+    <!-- MARKS -->
+    <section id="marks" class="page hidden">
+        <h2>Marks Management</h2>
+        <div class="panel">
+            <h3>Enter Student Marks</h3>
+            <select id="marksStudent"></select>
+            <input type="number" id="marksValue"
+                   placeholder="Enter marks (0-100)" min="0" max="100">
+            <button onclick="saveMarks()">Save Marks</button>
+            <div id="marksList"></div>
+        </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="page hidden">
+        <h2>Course Management</h2>
+        <div class="panel">
+            <h3>Available Courses</h3>
+            <div class="course-grid">
+                <div class="course">💻<h3>BCA</h3><p>Computer Applications</p></div>
+                <div class="course">⚙️<h3>BTech</h3><p>Engineering</p></div>
+                <div class="course">📈<h3>BBA</h3><p>Business Administration</p></div>
+                <div class="course">📚<h3>BCom</h3><p>Commerce</p></div>
+                <div class="course">🔬<h3>BSc</h3><p>Science</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEES -->
+    <section id="fees" class="page hidden">
+        <h2>Fees Management</h2>
+        <div class="panel">
+            <h3>Fee Details</h3>
+            <select id="feeStudent"></select>
+            <input type="number" id="feeAmount" placeholder="Enter fee amount">
+            <select id="feeStatus">
+                <option>Paid</option>
+                <option>Pending</option>
+            </select>
+            <button onclick="saveFee()">Save Fee</button>
+            <div id="feeList"></div>
+        </div>
+    </section>
+
+    <!-- TIMETABLE -->
+    <section id="timetable" class="page hidden">
+        <h2>Class Timetable</h2>
+        <div class="panel table-wrap">
+            <table>
+                <tr><th>Day</th><th>9 AM</th><th>11 AM</th><th>2 PM</th></tr>
+                <tr><td>Monday</td><td>Python</td><td>Java</td><td>DBMS</td></tr>
+                <tr><td>Tuesday</td><td>HTML</td><td>CSS</td><td>JavaScript</td></tr>
+                <tr><td>Wednesday</td><td>DBMS</td><td>Python</td><td>Maths</td></tr>
+                <tr><td>Thursday</td><td>Java</td><td>HTML</td><td>English</td></tr>
+                <tr><td>Friday</td><td>CSS</td><td>DBMS</td><td>Python</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="page hidden">
+        <h2>College Events</h2>
+        <div class="panel">
+            <h3>Add Event</h3>
+            <input id="eventName" placeholder="Event Name">
+            <input type="date" id="eventDate">
+            <button onclick="addEvent()">Add Event</button>
+            <div id="eventList"></div>
+        </div>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
