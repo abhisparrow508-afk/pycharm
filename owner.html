@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VoteSphere - Owner Dashboard</title>
+
+    <link rel="stylesheet" href="voter.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🗳️ VoteSphere</h1>
+    <p>Election Owner Dashboard</p>
+</header>
+
+<main class="container">
+
+    <section class="card">
+
+        <h2>Welcome, Election Owner!</h2>
+        <p>Manage your online election here.</p>
+
+        <div class="dashboard-grid">
+
+            <button onclick="showOverview()">Dashboard Overview</button>
+
+            <button onclick="manageCandidates()">Manage Candidates</button>
+
+            <button onclick="manageVoters()">Manage Voters</button>
+
+            <button onclick="viewResults()">Election Results</button>
+
+            <button type="button" onclick="logout()">Logout</button>
+
+        </div>
+
+    </section>
+
+    <section class="card" id="dashboardContent">
+
+        <h2>Dashboard Overview</h2>
+
+        <div id="overviewStats"></div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>VoteSphere © 2026</p>
+</footer>
+
+<script src="owner.js"></script>
+
+</body>
+</html>

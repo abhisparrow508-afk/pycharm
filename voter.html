@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteSphere - Online Voting</title>
+    <link rel="stylesheet" href="voter.css">
+</head>
+<body>
+
+<header>
+    <h1>🗳️ VoteSphere</h1>
+    <p>Online Voting Simulator</p>
+</header>
+
+<main class="container">
+
+    <!-- VOTER LOGIN -->
+    <section class="card" id="loginSection">
+        <h2>Voter Login</h2>
+
+        <input type="text"
+               id="voterName"
+               placeholder="Enter Your Name"
+               autocomplete="name">
+
+        <input type="text" id="voterId"
+               placeholder="Enter Voter ID">
+
+        <button id="loginBtn">Login / Register</button>
+
+        <p id="loginMessage"></p>
+    </section>
+
+    <!-- VOTING SECTION -->
+    <section class="card hidden" id="votingSection">
+        <h2>Election Candidates</h2>
+
+        <p id="welcomeMessage"></p>
+
+        <div id="candidateList" class="candidate-grid"></div>
+
+        <button id="logoutBtn" class="secondary">Logout</button>
+    </section>
+
+    <!-- OWNER LOGIN -->
+    <section class="card">
+        <h2>Owner Login</h2>
+
+        <input type="text" id="ownerUsername"
+               placeholder="Owner Username">
+
+        <input type="password" id="ownerPassword"
+               placeholder="Owner Password">
+
+        <button id="ownerLoginBtn">Owner Login</button>
+    </section>
+
+</main>
+
+<footer>
+    <p>VoteSphere © 2026 | Educational Voting Simulator</p>
+</footer>
+
+<script src="voter.js"></script>
+<script src="owner.js"></script>
+
+</body>
+</html>
